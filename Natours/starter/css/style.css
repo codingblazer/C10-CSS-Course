@@ -6,3 +6,59 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* This is something we should always do called resetting => So many browsers have default padding, margin with elememts like h1, etc that gets auto
+added by the browser and this resetting will reset it for us so we always add any padding etc ourself only. Also let say you give height 5px to element
+and element has padding of 4 px and 1 px border => eff height of element will be 0px but we dont want to check margin, pad, border etc everytime we give 
+height and hence box-sizing border box will make the elements height not include these */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* We are putting the fonts in body so that it applies to everything which is inheritance => We could have put it in * above but putting it in body is
+best practive => we are able to use lato font family because we included google fonts css in html file for diff font weights => line height 1.7 means
+it is 1.7 times bigger than default line height => We have vs code extension if we click color on below and click an nywhere in color palette that color 
+will be selected*/
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgb(119, 119, 119);
+  padding: 30px;
+}
+
+/* 95vh => 95% of viewport height => viewport is basically what you are seeing i.e. if we decrease window size, vw height will be smaller window height => 
+even if broswer is reduced, this header will always be 95% of what is visible to user on that window. Cover background size means that whatever might be the size of viewport
+and the image, it will always fit the image in the element i.e. element will be 100% filled by image but also respect the aspect ration (original height to width ratio of 
+image) => so let say you change the window size and at any window size, it will have to fill header by 100% of image => it will fill the elmemnet in such manner that if it 
+fills full width and based on aspect of image if height of image is more than 90vw that will be cropped i.e. the extra height OR it might fill full height
+ with image and based on aspect let say width of image is overflowing and thus that will be cropped */
+/* background position tells where to crop image from in case of overflow i.e. top meaning that top will be fixed and thus anything overflow will crop from 
+bottom and it can be center or bottom as well*/
+/* Gradient is set using bg image and this add things after url => since we want gradient to be on top of iamge, write gradient first. We can give one or 2 directions
+like shown => We will change the opacity for image to show up => We can choose 0.8 opacity and color get converted to rgb value from color palette => click top pannel 
+twice to first chaneg to rgb format and then on right choose opacity */
+/* clip path allows to define polygon with which we can make any shape also like arrow => Can see this website for it => https://bennettfeely.com/clippy/ => 
+we can define any number of pair coordinates. Remember left top is 0,0 */
+
+header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.801),
+      rgba(85, 197, 122, 0.801)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+/* HTML has 2 types of elements => block and inline. Block elements are like div, p, h1-6, li, ul, table and inline elements are img, input, button, a, label, select, br, span
+The block elements starts at new line and takes full width available + they can have top and bottom margin => div like block element are used as containers
+The inline element like span starts at same line and takes width taken by content + they cant have top and bottom margin */

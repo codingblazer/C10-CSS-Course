@@ -57,8 +57,59 @@ header {
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
 }
 
 /* HTML has 2 types of elements => block and inline. Block elements are like div, p, h1-6, li, ul, table and inline elements are img, input, button, a, label, select, br, span
 The block elements starts at new line and takes full width available + they can have top and bottom margin => div like block element are used as containers
 The inline element like span starts at same line and takes width taken by content + they cant have top and bottom margin */
+
+/* In html we have placed img which is inline inside a div as it is good practice to put inlines always in some container like div. Also alt of image is used
+not just to show text to users but also for seo purposes.  */
+
+/* Now we have added logo img container and top and left from parent and thus absolute position of this container and top and left are wrt to the parent which 
+and hence parent is relative. height of logo image itself is given and width will be calc auto based on aspect ration and we could have given it vice versa */
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+/* Now we have added h1 and there should be ideally one h1 on page as google uses that for SEO => only putting outdoors wont make sense for google and hence all part is h1
+and now we will just give diff sizes etc for h1 main and sub which needs to be smaller. display block will make it start in new line and take full width which is what we want
+Now this h1 is not in center and it should be responsively in center => So in html we will put all this h1 in one div which we will center and alos because there will be button
+in next secttion  which will be in another div => Now best way to center this div is using position as absolute and top and left as 50, 50% => but you will see it 
+is not exactly in center and this is because of the text itself has some width and 50% from left was actually for leftest corner of text but we want it to be 
+from the center of text to be exactly in center => transform -50 will do it => thus top, left are wrt to the parent for which relative is already added and 
+the transform is always wrt element itself i.e. to find the center of the text */
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.heading-primary-main {
+  display: block;
+  font-weight: 400;
+  font-size: 60px;
+  letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 17.4px;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

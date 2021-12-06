@@ -112,6 +112,7 @@ the transform is always wrt element itself i.e. to find the center of the text *
   font-size: 20px;
   letter-spacing: 17.4px;
   animation: moveInRight 1s ease-out;
+  margin-bottom: 60px;
 }
 
 .text-box {
@@ -119,6 +120,7 @@ the transform is always wrt element itself i.e. to find the center of the text *
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 /* Now we will add animation to move the main header first left, then right and finally in middle while fading => We define a animation using keyframe 
@@ -157,4 +159,48 @@ know why this happen and why this solves it  */
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* Now we will add button => see html for it. We have named classes btn and btn-white and this is good practice, btn common for all and btn-white specific. Now
+below we have added pseudo class for btn i.e. link and visited => pseudo class are special case or state for csss selector => link means normal button and
+visited means visited which is usually purple but by keeping style for both same, purple wont come
+*/
+/* Now we want some padding for the button but since a is inline element it wont work and thus we will make it inline block so padding works => text decoration
+is things like underline and its color => We have added border radious to make rounded corner and we can give any high value like 200, 500 and result will be same
+=> Now we want to bring this button to center and we could do that using transform etc like we did for heading but that will be overdoing, we can do it simply
+ by using text-align center in text-box class above and that way, text which is this, inside text-box will be centered */
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+/* When any button hover, we want an animation => it should move up a bit and similarly when its actually clicked i.e. active, it moves up but lesser than hover
+=> we added transform translate for both. Now this -3px, -1px are always wrt to the inital state i.e. btn:link => Now we have studied 2 types of animation, one is
+using methods like keyframes we did and second one is transition which is easier and we will use now. Now transition property is always added to the starting state
+and that is btn:link in this case and thus we add transition above and first param is properties for which it should animate and we said all and second param is 
+time of animation => Now whenever the state of btn changes, it will go to let say btn hover and that has diff transform value i.e. and this change of transform
+value will be animated in 2s since we have applied aninmation to all i.e. all props in starting state, if any changes, animate that change  */
+
+/* Now on hover we will add some shadow => box shadow take 1) x shadow which we dont want and hence 0 2) y shadow 10px down 3) blur 20px is good 4) color of 
+shadow which is black and 0.2 transparency => we added same for active but shadow is less to make that button pressed impression*/
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.199);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.199);
 }

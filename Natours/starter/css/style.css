@@ -91,6 +91,7 @@ the transform is always wrt element itself i.e. to find the center of the text *
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+  backface-visibility: hidden;
 }
 
 .heading-primary-main {
@@ -98,6 +99,11 @@ the transform is always wrt element itself i.e. to find the center of the text *
   font-weight: 400;
   font-size: 60px;
   letter-spacing: 35px;
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  /* animation-delay: 3s; */
+  /* animation-iteration-count: 3; */
+  animation-timing-function: ease-out;
 }
 
 .heading-primary-sub {
@@ -105,6 +111,7 @@ the transform is always wrt element itself i.e. to find the center of the text *
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 17.4px;
+  animation: moveInRight 1s ease-out;
 }
 
 .text-box {
@@ -112,4 +119,42 @@ the transform is always wrt element itself i.e. to find the center of the text *
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* Now we will add animation to move the main header first left, then right and finally in middle while fading => We define a animation using keyframe 
+and in percentage tell what to do at that phase of animation and in between is handled by animation timing function => See above in heading main we have added animation 
+moveinleft which we will define below and duration delay, animation timing function which can be custom or linear, ease in etc =>  opacity from 0 to 1 it 
+will increase linearly betwen 0% of animation to 100 => translate X  tells the position which is -100 of original position define above for heading main, 
+then 10 and then 0 meaning its original position*/
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* We will define movein right in similar manner. Also note that this we have included in heading sub but extra prop we defined in shorthand manner. Also if yo
+see animation closely you will see that it is little shaky and it can be fixed by adding backface visibiloty like we added above in header primary => we dont
+know why this happen and why this solves it  */
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

@@ -161,6 +161,17 @@ know why this happen and why this solves it  */
   }
 }
 
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Now we will add button => see html for it. We have named classes btn and btn-white and this is good practice, btn common for all and btn-white specific. Now
 below we have added pseudo class for btn i.e. link and visited => pseudo class are special case or state for csss selector => link means normal button and
 visited means visited which is usually purple but by keeping style for both same, purple wont come
@@ -178,6 +189,7 @@ is things like underline and its color => We have added border radious to make r
   display: inline-block;
   border-radius: 100px;
   transition: all 0.2s;
+  position: relative;
 }
 
 .btn-white {
@@ -203,4 +215,55 @@ shadow which is black and 0.2 transparency => we added same for active but shado
 .btn:active {
   transform: translateY(-1px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.199);
+}
+
+/* We will add another animation of button just to understand power of pseudo elements => pseudo elements are after before etc which are elements that are
+hidden and present before or after the main element which is button => they must have the content and display property => Task is to make animation where 
+button expands & come back => Now here we will first try making the after pseudo element exactly like our button => just think of it exactly like button element and 
+forget about after etc thing => we have also added all things like display border radious for after element. No need for padding as no content inside this and also no 
+text decoration since after element is not link and no decoration removal required => Now for the color, since btn-white applied for same element, we can create
+a after for btn-white and wherever btn-white is used, the after of that element will have white color. Now to these after-element are actually treated like 
+child of main element and thus their height width is wrt to parent main element and hence we have given it 100% since we want it to look like button itself + 
+display is also inline block like original button => Now this after button will look like below the original button but we want it behind the original button
+=> we will give absolute position and top and left as 0 => it will look for relative going outwards in DOM and will find header but we want this absolute 
+position wrt to original button so this goes behind it => add relative to original button .Also add z-index to this after and since its z index is less than
+original button, it will be beneath it */
+
+.btn::after {
+  display: inline-block;
+  content: "";
+  border-radius: 100px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+  color: #777;
+}
+
+/* Now lets do original task of expand => See below use of multiple pseudo elements => when btn is hovered, the after element of that button which is 
+already present but not visible as it is behind should transform by scaling 2 times => it will give impression like original button has expanded Now to 
+animate this scale, we add transition property to original one i.e. btn:after and since changed property is only the size of after, it will animate
+Also adding opacity to become 0. We can add another animation where button also comes from bottom => created above new keyframe above with translate Y => 
+Creating separate class for this animation btn-animated => If you check this, you will see that button was for some time in original position and then at 
+keyframe 0% started from bottom and animated till original position but we dont want that initial button to be in original position => One way is to position 
+the original button at 30px bottom and then start upwards but this not good => We can use animation fill mode which basically applies the styles of
+animation at 0% also during the time when animation has not started yet. Tried moving part of btn-animated class to btn:link and things work same so there 
+was no reason for that except for having neater code. Also note that :: is used for pseudo elements i.e. after while : is used for pseudo classes like hover
+However some browser also accepts : for both.*/
+
+.btn:hover::after {
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
 }

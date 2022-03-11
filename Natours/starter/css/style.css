@@ -12,10 +12,16 @@ added by the browser and this resetting will reset it for us so we always add an
 and element has padding of 4 px and 1 px border => eff height of element will be 0px but we dont want to check margin, pad, border etc everytime we give 
 height and hence box-sizing border box will make the elements height not include these */
 
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 /* We are putting the fonts in body so that it applies to everything which is inheritance => We could have put it in * above but putting it in body is
@@ -26,10 +32,11 @@ will be selected*/
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.7;
   color: rgb(119, 119, 119);
-  padding: 30px;
+  padding: 3rem;
+  box-sizing: border-box;
 }
 
 /* 95vh => 95% of viewport height => viewport is basically what you are seeing i.e. if we decrease window size, vw height will be smaller window height => 
@@ -72,12 +79,12 @@ and hence parent is relative. height of logo image itself is given and width wil
 
 .logo-box {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 4rem;
+  left: 4rem;
 }
 
 .logo {
-  height: 35px;
+  height: 3.5rem;
 }
 
 /* Now we have added h1 and there should be ideally one h1 on page as google uses that for SEO => only putting outdoors wont make sense for google and hence all part is h1
@@ -97,8 +104,8 @@ the transform is always wrt element itself i.e. to find the center of the text *
 .heading-primary-main {
   display: block;
   font-weight: 400;
-  font-size: 60px;
-  letter-spacing: 35px;
+  font-size: 6rem;
+  letter-spacing: 3.5rem;
   animation-name: moveInLeft;
   animation-duration: 1s;
   /* animation-delay: 3s; */
@@ -109,10 +116,10 @@ the transform is always wrt element itself i.e. to find the center of the text *
 .heading-primary-sub {
   display: block;
   font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 17.4px;
+  font-size: 2rem;
+  letter-spacing: 1.75rem;
   animation: moveInRight 1s ease-out;
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 }
 
 .text-box {
@@ -132,10 +139,10 @@ then 10 and then 0 meaning its original position*/
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-10rem);
   }
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
   100% {
     opacity: 1;
@@ -150,10 +157,10 @@ know why this happen and why this solves it  */
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
   100% {
     opacity: 1;
@@ -164,7 +171,7 @@ know why this happen and why this solves it  */
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(3rem);
   }
   100% {
     opacity: 1;
@@ -185,11 +192,12 @@ is things like underline and its color => We have added border radious to make r
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
   display: inline-block;
-  border-radius: 100px;
+  border-radius: 10rem;
   transition: all 0.2s;
   position: relative;
+  font-size: 1.6rem;
 }
 
 .btn-white {
@@ -208,13 +216,13 @@ value will be animated in 2s since we have applied aninmation to all i.e. all pr
 shadow which is black and 0.2 transparency => we added same for active but shadow is less to make that button pressed impression*/
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.199);
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.199);
 }
 
 .btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.199);
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.199);
 }
 
 /* We will add another animation of button just to understand power of pseudo elements => pseudo elements are after before etc which are elements that are
@@ -232,7 +240,7 @@ original button, it will be beneath it */
 .btn::after {
   display: inline-block;
   content: "";
-  border-radius: 100px;
+  border-radius: 10rem;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -267,3 +275,11 @@ However some browser also accepts : for both.*/
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards;
 }
+
+/*  
+Read CSS theory in MAC notes and come back here => Now see above that we have changed everything from px to rem and also in case * we had earlier added 
+border box for box sizing to remove default padding etc => we have added *::after and *::before so that it also applies to the after and before elements. 
+Also, now we have moved this property to body CSS instead and here, we have added border sizing as inherit which means that for any any element => border
+sizing will be coming from inheritance and since all our elements are inside body, they will inherit from body => this is just a good practice of doing it 
+this way using inherit keyword otherwise earlier also it was fine. 
+*/

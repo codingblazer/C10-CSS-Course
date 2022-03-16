@@ -107,3 +107,20 @@ nav {
     background-color: lighten($color-tertiary, 10%);
   }
 }
+
+//Next we will install a SCSS compiler using npm => npm is package manager and CLI to download it and also provide npm scripts. We can come inside project
+//folder and do npm init which will just create package.json file and nothing else. Then we install npm install node-sass --save-dev => save dev adds it as
+//dev dependency meaning that it is development tool only since after converting sass to css we deploy that css and sass compiler is then never used. Ex- jquery
+//being actually used in the code wont be dev dependency. Why do we need package.json => because when sharing project we can share this package.json and
+//dependencies in node modules can be reconstructed from it => package.json can be included in any project using js based dependencies and nothing to do with
+//node js
+
+//NPM script => Let create a folder sass inside this and main.scss file inside it => We will move code from style.css to main.scss and it will work bcoz
+//valid css is valid scss as well => we can add some scss things like variables inside this and now add npm script for sass inside package.json and then
+//run that npm script => npm run compile:sass and once done we will see output css file in css output folder that we gave => We can add the -w flag in the
+//npm script which will watch the scss file for any changes => npm run process wont end and it will watch for changes.
+
+// Like the watch above, we however want it for all files of the project and there is package for that => live-server and we can do npm install -g i.e.
+//globally so that all projects on this computer have this package and you might get error due to permission and hence use sudo for this => and since this
+//is global package we can run it from terminla directly and not through npm script => we can do live-server on terminal and it will work => its actually actual
+//http server instead of file server (earlier we were simply opening html file which is file server)

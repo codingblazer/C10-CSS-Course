@@ -6,10 +6,12 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
 /* This is something we should always do called resetting => So many browsers have default padding, margin with elememts like h1, etc that gets auto
 added by the browser and this resetting will reset it for us so we always add any padding etc ourself only. Also let say you give height 5px to element
 and element has padding of 4 px and 1 px border => eff height of element will be 0px but we dont want to check margin, pad, border etc everytime we give 
 height and hence box-sizing border box will make the elements height not include these */
+
 *,
 *::after,
 *::before {
@@ -22,16 +24,19 @@ html {
   font-size: 62.5%;
 }
 
+$color-primary: #f9ed69; //yellow color
+
 /* We are putting the fonts in body so that it applies to everything which is inheritance => We could have put it in * above but putting it in body is
 best practive => we are able to use lato font family because we included google fonts css in html file for diff font weights => line height 1.7 means
 it is 1.7 times bigger than default line height => We have vs code extension if we click color on below and click an nywhere in color palette that color 
 will be selected*/
+
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.7;
-  color: #777777;
+  color: rgb(119, 119, 119);
   padding: 3rem;
   box-sizing: border-box;
 }
@@ -49,6 +54,7 @@ like shown => We will change the opacity for image to show up => We can choose 0
 twice to first chaneg to rgb format and then on right choose opacity */
 /* clip path allows to define polygon with which we can make any shape also like arrow => Can see this website for it => https://bennettfeely.com/clippy/ => 
 we can define any number of pair coordinates. Remember left top is 0,0 */
+
 header {
   height: 95vh;
   background-image: linear-gradient(
@@ -66,10 +72,13 @@ header {
 /* HTML has 2 types of elements => block and inline. Block elements are like div, p, h1-6, li, ul, table and inline elements are img, input, button, a, label, select, br, span
 The block elements starts at new line and takes full width available + they can have top and bottom margin => div like block element are used as containers
 The inline element like span starts at same line and takes width taken by content + they cant have top and bottom margin */
+
 /* In html we have placed img which is inline inside a div as it is good practice to put inlines always in some container like div. Also alt of image is used
 not just to show text to users but also for seo purposes.  */
+
 /* Now we have added logo img container and top and left from parent and thus absolute position of this container and top and left are wrt to the parent which 
 and hence parent is relative. height of logo image itself is given and width will be calc auto based on aspect ration and we could have given it vice versa */
+
 .logo-box {
   position: absolute;
   top: 4rem;
@@ -87,8 +96,9 @@ in next secttion  which will be in another div => Now best way to center this di
 is not exactly in center and this is because of the text itself has some width and 50% from left was actually for leftest corner of text but we want it to be 
 from the center of text to be exactly in center => transform -50 will do it => thus top, left are wrt to the parent for which relative is already added and 
 the transform is always wrt element itself i.e. to find the center of the text */
+
 .heading-primary {
-  color: #fff;
+  color: $color-primary;
   text-transform: uppercase;
   backface-visibility: hidden;
 }
@@ -127,6 +137,7 @@ and in percentage tell what to do at that phase of animation and in between is h
 moveinleft which we will define below and duration delay, animation timing function which can be custom or linear, ease in etc =>  opacity from 0 to 1 it 
 will increase linearly betwen 0% of animation to 100 => translate X  tells the position which is -100 of original position define above for heading main, 
 then 10 and then 0 meaning its original position*/
+
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -144,6 +155,7 @@ then 10 and then 0 meaning its original position*/
 /* We will define movein right in similar manner. Also note that this we have included in heading sub but extra prop we defined in shorthand manner. Also if yo
 see animation closely you will see that it is little shaky and it can be fixed by adding backface visibiloty like we added above in header primary => we dont
 know why this happen and why this solves it  */
+
 @keyframes moveInRight {
   0% {
     opacity: 0;
@@ -177,6 +189,7 @@ visited means visited which is usually purple but by keeping style for both same
 is things like underline and its color => We have added border radious to make rounded corner and we can give any high value like 200, 500 and result will be same
 => Now we want to bring this button to center and we could do that using transform etc like we did for heading but that will be overdoing, we can do it simply
  by using text-align center in text-box class above and that way, text which is this, inside text-box will be centered */
+
 .btn:link,
 .btn:visited {
   text-transform: uppercase;
@@ -200,8 +213,10 @@ using methods like keyframes we did and second one is transition which is easier
 and that is btn:link in this case and thus we add transition above and first param is properties for which it should animate and we said all and second param is 
 time of animation => Now whenever the state of btn changes, it will go to let say btn hover and that has diff transform value i.e. and this change of transform
 value will be animated in 2s since we have applied aninmation to all i.e. all props in starting state, if any changes, animate that change  */
+
 /* Now on hover we will add some shadow => box shadow take 1) x shadow which we dont want and hence 0 2) y shadow 10px down 3) blur 20px is good 4) color of 
 shadow which is black and 0.2 transparency => we added same for active but shadow is less to make that button pressed impression*/
+
 .btn:hover {
   transform: translateY(-0.3rem);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.199);
@@ -223,6 +238,7 @@ display is also inline block like original button => Now this after button will 
 => we will give absolute position and top and left as 0 => it will look for relative going outwards in DOM and will find header but we want this absolute 
 position wrt to original button so this goes behind it => add relative to original button .Also add z-index to this after and since its z index is less than
 original button, it will be beneath it */
+
 .btn::after {
   display: inline-block;
   content: "";
@@ -251,6 +267,7 @@ the original button at 30px bottom and then start upwards but this not good => W
 animation at 0% also during the time when animation has not started yet. Tried moving part of btn-animated class to btn:link and things work same so there 
 was no reason for that except for having neater code. Also note that :: is used for pseudo elements i.e. after while : is used for pseudo classes like hover
 However some browser also accepts : for both.*/
+
 .btn:hover::after {
   transform: scale(1.5);
   opacity: 0;
@@ -268,10 +285,13 @@ Also, now we have moved this property to body CSS instead and here, we have adde
 sizing will be coming from inheritance and since all our elements are inside body, they will inherit from body => this is just a good practice of doing it 
 this way using inherit keyword otherwise earlier also it was fine. 
 */
+
 /* Also read part of the theory of CSS in Notes of Mac */
+
 /* When we write just CSS, it becomes very messy over time and thus we use SASS which is makes CSS more organizable and has everything from CSS => Sass is a 
 CSS precprocessor which adds more power to CSS. We write the Sass code and sass compiler compliles it to CSS Code. Website never knows anything about sass.
 There are other CSS preprocessors like less and stylus but this is most popular. Features =>
 Variables, Nesting, Operators, Partials and imports, Functions, extends, control directives*/
+
 /* Sass has 2 types of syntax => one is sass syntax which is without curly braces etc and is very confusing => we have SCSS (sassy CSS) syntax and it is again
 sass only and in this case we have brackets and all and more readable and we will use that. See sample.scss and sample.html*/

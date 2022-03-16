@@ -283,3 +283,5 @@ Also, now we have moved this property to body CSS instead and here, we have adde
 sizing will be coming from inheritance and since all our elements are inside body, they will inherit from body => this is just a good practice of doing it 
 this way using inherit keyword otherwise earlier also it was fine. 
 */
+
+/* Also read part of the theory of CSS in Notes of Mac */

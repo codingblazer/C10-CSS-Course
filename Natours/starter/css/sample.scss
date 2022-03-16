@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
 }
-
+//This is how the variables are declared and also comments can be done using the //
 $color-primary: #f9ed69; //yellow color
 $color-secondary: #f08a5d; //orange
 $color-tertiary: #b83b5e; //pink
@@ -31,11 +31,12 @@ $width-button: 150px;
 
 nav {
   margin: divide(60, 2) * 1px; //30px
-  background-color: $color-primary;
+  background-color: $color-primary; //this is how the variable is used
 
   @include clearfix;
 }
 
+//In css, to do the same, we have do it like .navigation li {} but in case of SCSS, we can do nesting like below and thus better organisation of code.
 .navigation {
   list-style: none;
   float: left;
@@ -45,6 +46,9 @@ nav {
     margin-left: 30px;
 
     &:first-child {
+      // let say we want to apply margin 0 but only to the first li element => we can do .navigation li li:first-child ie. in css we write full
+      //path => but here because of nesting we can put it inside. Now we can like shown, include the li:first inside the li and since it is actually not
+      //inside li in html => we can say append &: before it which means...just write the complete path leading to this block i.e. navigation li
       margin: 0;
     }
 
@@ -67,6 +71,8 @@ nav {
   @include style-link-text($color-text-light);
 }
 
+//See below => we can use the & like below as well to define multiple states of anything since & will be replaced by the btn-main => Also see the inbuild color
+//function darken which takes the color and darkens it by given amount and similarly we have a lighter function
 .btn-main {
   &:link {
     @extend %btn-placeholder;

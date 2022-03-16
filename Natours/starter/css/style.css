@@ -285,3 +285,11 @@ this way using inherit keyword otherwise earlier also it was fine.
 */
 
 /* Also read part of the theory of CSS in Notes of Mac */
+
+/* When we write just CSS, it becomes very messy over time and thus we use SASS which is makes CSS more organizable and has everything from CSS => Sass is a 
+CSS precprocessor which adds more power to CSS. We write the Sass code and sass compiler compliles it to CSS Code. Website never knows anything about sass.
+There are other CSS preprocessors like less and stylus but this is most popular. Features =>
+Variables, Nesting, Operators, Partials and imports, Functions, extends, control directives*/
+
+/* Sass has 2 types of syntax => one is sass syntax which is without curly braces etc and is very confusing => we have SCSS (sassy CSS) syntax and it is again
+sass only and in this case we have brackets and all and more readable and we will use that. See sample.scss*/

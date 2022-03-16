@@ -11,6 +11,10 @@ $color-text-light: #eee;
 
 $width-button: 150px;
 
+//mixin is a reusable block of code => content inside it will be copied wherever it is included => see it is used inisde nav {} => Since inside nav we
+//have floated elements, we are clearing the floats so that anything after nav does not follows into the empty space left here and also height of nav is ok.
+//we have included some more mixins like style-link-text by moving common code => DRY dont repeat yourself => mixin like shown can take arguments also like
+//shown.
 @mixin clearfix {
   &::after {
     content: "";
@@ -24,6 +28,8 @@ $width-button: 150px;
   text-transform: uppercase;
   color: $col;
 }
+
+//See the function below => same as mixin but it returns a value instead of code => we can create our own like below or use inbuild like darken etc
 
 @function divide($a, $b) {
   @return $a / $b;
@@ -73,6 +79,13 @@ nav {
 
 //See below => we can use the & like below as well to define multiple states of anything since & will be replaced by the btn-main => Also see the inbuild color
 //function darken which takes the color and darkens it by given amount and similarly we have a lighter function
+
+//Also see the extend below in btn-main and btn-hot => extend is exactly opposite of mixin => Wherever you put extend, the selectors will be copied and pasted in extend declaration =>
+// .btn-main { &:link { => this selector will be copied and pasted in place of %btn-placeholder { above => .btn-main {background-color: $color-secondary;} will
+//remain below only. The benfit of this is that if we would have used mixin => then btn-placeholder code would have been copied and pasted at 2 places below i.e.
+//btn-main and btn-hot while in this case => selectors are copied and thus placeholder block above will become  .btn-main {&:link {, .btn-hot {&:link { definition}}
+//thus multiple selectors for same code and thus no repetition of code i.e. DRY => but we should use extend only when selectors are related like this i.e. btn
+//and can use mixin always as well
 .btn-main {
   &:link {
     @extend %btn-placeholder;

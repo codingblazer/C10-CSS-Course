@@ -1,0 +1,41 @@
+This folder has code after S05 is done so we will be commenting to explain only important parts in the code. Let's first see the organisation => 7-1 rule =>
+we created all the folder you are seeing inside sass folder => abstracts folder will have things which wont be present in compiled css i.e. variables, mixins,
+functions etc => If you see there are files like _variables.scss => _ is used to tell that this is partial file and will be imported in some other file. => 
+main.scss inside the sass which is importing all the partial files => while importing, we dont need to give the .scss extension. 
+Base folder is for things very basic and low level => base.scss will have things like resets of margin padding, html and body element css etc. Animations will
+have animations, typography will have font related things and utlities will have common classes like we have in skylab.
+
+We have components folder to have all the components and there is layout which holds together the components. Now layouts are also like pages but they are also
+reusable but pages are not. Layout is group of components and since it is single page app, it can be shared across pages like header etc
+
+Pages are completely different ones from each other. We are not using themes folder and vendors folder (which contains the css from 3rd party like bootstrap css)
+Next we have basically moved all code we had in our css into the respective folders and included them in main.scss.
+
+Now components have btn which is actually component => If you see we have also used & here to simplofy things i.e. earlier btn things were all separate but we
+have combined everything under the btn class by nesting everything using & => &:visited which is btn:visited, &--white which is btn--white, &::after which will
+become btn--white::after.
+
+Layout has obviously the header file since it can contains components and also reusable across pages.
+
+Now if you see header primary is present in typography which could have been moved to header component but anything related to typography we will extract in 
+typography file and rest we will keep in component file. See body also has some typography and that part is extracted into typography file while rest of body
+is in base. Also see that => 
+html {
+    // This defines what 1rem is
+    font-size: 62.5%;
+}
+though this is font size, it is not in typo file because this is more like conversion to rem reset and not typo definition as such.
+
+Responsive Design Principles (Layout adjust to all screen or device sizes or even browser viewport) =>
+1. Fluid layouts => by using percentage unit of viewport and not px units => Also we use max-width property instead of width property => same for height. Fluid
+layouts can be build in 3 ways => 
+a) Floats => this is the old way to put things side by side => we still need to know this since we lot of times work on old code and might update that too.
+b) Flexbox => this is modern way and for 1-D layouts i.e. building rows
+c) CSS grid => this is also modern way and for 2-D layouts i.e. building grid and especially complex layouts having multiple rows needed for sure. 
+
+2. Media queries => breakpoints after which certain type of css will be used => helps to work on diff devices => to make it responsive within a breakpoints, 
+other principles are used.
+3. Responsive units => Using rem unit for lengths 
+4. Flexible images => Always use % for image dimensions together with max-width property 
+
+

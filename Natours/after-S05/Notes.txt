@@ -39,3 +39,6 @@ other principles are used.
 4. Flexible images => Always use % for image dimensions together with max-width property 
 
 
+a) Floats => First we will see how to make grids using the floats => In the HTML file we have first added the HTML part for the grids as shown in image in 
+same folder gridimage.jpg => See the commented part in index.html where we have added section and there are multiple rows as we are trying to make that image
+grids. Now we have created a layout file _grid.scss for this html part. See the comments there now. 

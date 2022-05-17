@@ -1,8 +1,22 @@
-.u-center-text { text-align: center !important; }
+//we have used this utility class in html to center text in about section which is inside div => utility classes have single aim and can be applied across multiple things
+//=> the text must be inline element to be centered this way which is the case for about text heading secondary
+.u-center-text {
+  text-align: center !important;
+}
 
-.u-margin-bottom-small { margin-bottom: 1.5rem !important; }
-.u-margin-bottom-medium { margin-bottom: 4rem !important; }
-.u-margin-bottom-big { margin-bottom: 8rem !important; }
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important;
+}
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
+}
 
-.u-margin-top-big { margin-top: 8rem !important; }
-.u-margin-top-huge { margin-top: 10rem !important; }
+.u-margin-top-big {
+  margin-top: 8rem !important;
+}
+.u-margin-top-huge {
+  margin-top: 10rem !important;
+}

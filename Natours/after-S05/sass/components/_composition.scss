@@ -1,41 +1,52 @@
+//this file is for 3 images on top of each other in about section called composition => BEM naming => composition is block, photo is element and p1,p2,p3 are
+//modifiers to photo element. Now we want to position these images on one another and we know that we can do it by absolute even for inline elements like img
+//can overlap in this case => for photo to absolute, add relative to parent composition => the actual positioning of image can be done in modifier since it
+//is different for every image =>
+
 .composition {
-    position: relative;
+  position: relative;
 
-    &__photo {
-        width: 55%;
-        box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
-        border-radius: 2px;
-        position: absolute;
-        z-index: 10;
-        transition: all .2s;
-        outline-offset: 2rem;
+  &__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.2s;
+    outline-offset: 2rem;
 
-        &--p1 {
-            left: 0;
-            top: -2rem;
-        }
-
-        &--p2 {
-            right: 0;
-            top: 2rem;
-        }
-
-        &--p3 {
-            left: 20%;
-            top: 10rem;
-        }
-
-        &:hover {
-            outline: 1.5rem solid $color-primary;
-            transform: scale(1.05) translateY(-.5rem);
-            box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
-            z-index: 20;
-        }
-
+    &--p1 {
+      left: 0;
+      top: -2rem;
     }
 
-    &:hover &__photo:not(:hover) {
-        transform: scale(.95);
+    &--p2 {
+      right: 0;
+      top: 2rem;
     }
-    //composition:hover composition__photo:not(:hover) {
+
+    &--p3 {
+      left: 20%;
+      top: 10rem;
+    }
+    //thsi is the hover effeect in which image which is hovered becomes bigger and other 2 images become smaller => not just state of hovered but other image is
+    //also changed -=> for hover, we have added some z index as 20 and for notmal photos, we have added zindex as 10 above => image which is hovered will be stacked
+    //on top => and we have added scale big for hovered image
+    //we have added outline below => it is exactly like border but with this we can have offset as well => above see that we have added outline offset of 2 rem
+    //which means this is adding white space between the border and the photo
+    //see the selector to select the photos which are not hovered
+
+    &:hover {
+      outline: 1.5rem solid $color-primary;
+      transform: scale(1.05) translateY(-0.5rem);
+      box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5);
+      z-index: 20;
+    }
+  }
+
+  //this selector is eq to  //composition:hover composition__photo:not(:hover) { => telling that when composition hover happens (hover anywhere inside composition)
+  //in that case we select that composition's photo  which is not in hover state and scale it down
+  &:hover &__photo:not(:hover) {
+    transform: scale(0.95);
+  }
 }

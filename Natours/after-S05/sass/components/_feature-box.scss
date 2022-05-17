@@ -1,22 +1,38 @@
+//1. Now we will work on feature section => there are 4 boxes and then we have icon font in each one of them => we will use linea free iconset and download it =>
+// download from linea.io => so inside downloaded folder => basic => you will see diff things => iconset are vectors which can scale well, then we have png which does not
+//scale well and we wont use it => then we have svg which we will use later => Inside iconfont folder, there are things like => fonts, styles.css => we need these
+// fonts are where the icons live actually => copy fonts and style css file and paste inside css folder of our project since this is css => fonts folder as is
+// and rename style css of icons to icon-font.css => Now include this css file inside stylsheet section of html => inside icon-font file you will see that
+//font files which are actually icons are included and all 4 are included because diff browser need diff ones => now in css, we are using classes to specify
+//these icons
+// To use icons => just in any element, include the class="icon-<name of icon from website>" => if you see html, we have created 4 cols and then inside each
+//col, we are adding feature box which is defined below -=> feature box has icon, heading, text => got to home.scss and see that we have added section for
+//feartures and this will have feature boxes which are 4 =>below if you see inside icon, we have again added gradient in icon color from left to right =>
+//since this icon is also text, the same logic will work that we did => and finally we have added hover state with transition
+
 .feature-box {
-    background-color: rgba($color-white, .8);
-    font-size: 1.5rem;
-    padding: 2.5rem;
-    text-align: center;
-    border-radius: 3px;
-    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
-    transition: transform .3s;
+  background-color: rgba($color-white, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+  transition: transform 0.3s;
 
-    &__icon {
-        font-size: 6rem;
-        margin-bottom: .5rem;
-        display: inline-block;
-        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-        -webkit-background-clip: text;
-        color: transparent;
-    }
+  &__icon {
+    font-size: 6rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    background-image: linear-gradient(
+      to right,
+      $color-primary-light,
+      $color-primary-dark
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 
-    &:hover {
-        transform: translateY(-1.5rem) scale(1.03);
-    }
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
 }

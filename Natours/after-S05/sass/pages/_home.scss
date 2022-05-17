@@ -7,6 +7,11 @@
   margin-top: -20vh;
 }
 
+//simply added a feature section => Now for the feature section to have that clip type of thing we did for header, we can do clip thing or there is nice trick
+//to do that same => to the whole section of features, we add   transform: skewY(-7deg); => this will roitate whole section by 8 deg => but the content which
+//is feature boxes will also be tilted but we want them straight => we use a new selector => see below => & * would have meant all children or grandchildren
+//or so on of section-feartures but & > * means all direct children of section-fearures which as we can see in html is the row containing feature boxes =>
+//we tilt that by 8 deg in opp direction and the whole content is straigtened and we get the same clip thing we did earlier.
 .section-features {
   padding: 20rem 0;
   background-image: linear-gradient(

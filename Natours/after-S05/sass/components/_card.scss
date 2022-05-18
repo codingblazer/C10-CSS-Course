@@ -28,7 +28,7 @@
     width: 100%;
     backface-visibility: hidden;
     border-radius: 3px;
-    overflow: hidden;
+    overflow: hidden; //side has a picture which is overflowing this parent in the corners => overflow hidden makes any part of child overflowing the parent to hide
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
 
     &--front {
@@ -76,8 +76,13 @@
   &__picture {
     background-size: cover;
     height: 23rem;
-    background-blend-mode: screen;
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    background-blend-mode: screen; //there are many diff blend modes which blend the bg color and bg image that we have given below in specific pics
+    -webkit-clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 85%,
+      0 100%
+    ); //webkit clippath is used to support it in other browsers also
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -88,7 +93,8 @@
           $color-secondary-light,
           $color-secondary-dark
         ),
-        url(../img/nat-5.jpg);
+        //this url is given wrt to css style.css file because after compilation to css, it will search image from there and not from scss file
+          url(../img/nat-5.jpg);
     }
 
     &--2 {
@@ -110,20 +116,26 @@
     }
   }
 
+  //IMP note =. in chrome dev tools -> styles -> you can select :hov and then select the state to see classes for that state
+  //this is for the text on the image
   &__heading {
     font-size: 2.8rem;
     font-weight: 300;
     text-transform: uppercase;
     text-align: right;
     color: $color-white;
-    position: absolute;
+    position: absolute; //using absolute position to overlap text on the image
     top: 12rem;
     right: 2rem;
     width: 75%;
   }
 
   &__heading-span {
+    //we have this heading inside span and thus when overflow happens, it will break to next line
     padding: 1rem 1.5rem;
+    //Now if we add padding => it will be added to start and end which are in diff lines because absolte pos has to be followed and oerflow took it to next line
+    //to get padding in end of first and start of seconf line we use below => which says that any break happens, clone the styling and hence padding will be
+    //in botht the lines
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
 

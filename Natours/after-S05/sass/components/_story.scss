@@ -1,58 +1,75 @@
+//each story has shape in round figure inside it like profile and text going around that circl in circular fashion => text is para and text
+
 .story {
-    width: 75%;
-    margin: 0 auto;
-    box-shadow: 0 3rem 6rem rgba($color-black, .1);
-    background-color: rgba($color-white, .6);
-    border-radius: 3px;
-    padding: 6rem;
-    padding-left: 9rem;
-    font-size: $default-font-size;
-    transform: skewX(-12deg);
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  background-color: rgba($color-white, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+  //so this shape or profile circle is rectange with width and height and floated left so text is on right= > shape outside will create polygon type thing
+  //and allow whatever is onthe right to wrap around the polygon which is the text we want to wrap=>
+  //50% means 50% of element height width ie. 7.5 rem radious => at 50% 50% means left and right meaning center of circle exactly a circle => for this prop
+  //to work, element must be floated which is the case + elemnt should have height and width also again whic is the case
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(
+      50% at 50% 50%
+    ); //webkit is needed for it to work in safari
+    shape-outside: circle(50% at 50% 50%);
+    //above shape outside just tells how to allow content to flow around the element but the actual shape of the element will remain same unless clipped
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    //thus we added clip for circle shape as well
+    //the best way to add mar4gin or spacing between text and this element, since it is floated element is using translate and not use margin actualy
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+  }
 
-    &__shape {
-        width: 15rem;
-        height: 15rem;
-        float: left;
-        -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%);
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
-        transform: translateX(-3rem) skewX(12deg);
-        position: relative;
-    }
+  //this is basically the image that will go inside the shape => remember that whenever you have image, if you dont give height or width, it will
+  //take its natural size and overflow => we must give some height or width => since it is inside shape, we can ask it to take 100% of parent width or height
+  //which for shape as parent we have given => if give width as 100% => aspect ratio wont let complete height so give 100% height instead.
+  //Now finally lets rotate the whole story thing using skeew => -12 deg for story level done in X => now the content needs to be done in opp direction =>
+  //we can do $ > * {skew 12 deg} meaning all direct child of story i.e. content will rotate but shape part wont rotate and this is because it already has
+  //transform applied and 2 selectors applying transform, only one will work => we should add this trasnform of skew to  same trasnform we already have like
+  //done above inside shapre transfrom => for other childs i.e. text, we added inside there selector transform of skew 12 deg
+  &__img {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    backface-visibility: hidden;
+    transition: all 0.5s;
+  }
 
-    &__img {
-        height: 100%;
-        transform: translateX(-4rem) scale(1.4);
-        backface-visibility: hidden;
-        transition: all .5s;
-    }
+  &__text {
+    transform: skewX(12deg);
+  }
 
-    &__text {
-        transform: skewX(12deg);
-    }
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    backface-visibility: hidden;
+  }
 
-    &__caption {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, 20%);
-        color: $color-white;
-        text-transform: uppercase;
-        font-size: 1.7rem;
-        text-align: center;
-        opacity: 0;
-        transition: all .5s;
-        backface-visibility: hidden;
-    }
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 
-    &:hover &__caption {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-
-    &:hover &__img {
-        transform: translateX(-4rem) scale(1);
-        filter: blur(3px) brightness(80%);
-    }
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+  }
 }

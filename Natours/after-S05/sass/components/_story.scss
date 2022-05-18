@@ -49,6 +49,13 @@
     transform: skewX(12deg);
   }
 
+  //now inside shape, we want when we hover over image, text should come and image become blurr => use abs and relative add to parent i.e. shape => cenrered
+  //using top and left and then translate to have text center as well => now we want when you hover over complete story, move the text to center => so make
+  //initial of caption to 20% i.e. down initially and opacity 0 => on hover below, we bring it to -50 back which is center and opacity 1 => also add a
+  //trasition for this and bakcface visibility =>
+  //Now for blur, we have added transfrom of scale 1.4 initially above for img and then on hover, it is 1 + we have added blur thing + transition for this
+  //=> Also though does not matter but image although inside shape but not in center of its rectange => added translateX in img and hover thing => but this
+  //did something wierd and whenever something like happens it is usually because of backface visibulty and thus we added it in img
   &__caption {
     position: absolute;
     top: 50%;

@@ -61,6 +61,10 @@
     transform: translateY(-4rem);
   }
 
+  //now we will style the radio buttons which are placed in radio group so that only one of them is selected => but the thing is standard radion button input
+  //cant be styled using CSS => we will create a radio button of our own and also keep the original radio button => for functionality we will use standard one
+  //and for showing to the user we will show custom created one and hide standard one => so both will be tied => radion-input is standard one and radio-button
+  //is ours one
   &__radio-group {
     width: 49%;
     display: inline-block;
@@ -76,34 +80,39 @@
     position: relative;
     padding-left: 4.5rem;
   }
-
+  //this is our created radio  button which is inside the radion label=>
   &__radio-button {
     height: 3rem;
     width: 3rem;
     border: 5px solid $color-primary;
-    border-radius: 50%;
-    display: inline-block;
+    border-radius: 50%; //this will create circlee
+    display: inline-block; //this we have done bcoz otherwise height and width wont work
     position: absolute;
     left: 0;
     top: -0.4rem;
 
+    //this is a after pseudo element which is for the dot that is inside the circle in case of selection
     &::after {
       content: "";
-      display: block;
+      display: block; //since we need to give height width to it
       height: 1.3rem;
       width: 1.3rem;
       border-radius: 50%;
-      position: absolute;
+      position: absolute; //have to set parent label as relative but it is absolute already and this actually also works
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: $color-primary;
-      opacity: 0;
-      transition: opacity 0.2s;
+      transform: translate(-50%, -50%); //to bring it to center
+      background-color: $color-primary; //to make it solid
+      opacity: 0; //initially it is not selected so dot wont show up
+      transition: opacity 0.2s; //dot appear or going away should happen through animation
     }
   }
 
+  //so when the original radio button is checked, in that case, find a sibbling radio label and it has a radio button as child, take the after element of button which is
+  //the dot inside the our custom radion button and show it
   &__radio-input:checked ~ &__radio-label &__radio-button::after {
     opacity: 1;
   }
+  //and finally above, we will display none for the real radion buttons
+  //now there is another form group having button => we should not use anchor element based button because form infers from button element for submit action
 }

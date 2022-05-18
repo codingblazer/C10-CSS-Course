@@ -40,6 +40,7 @@
   padding: 15rem 0;
 }
 
+//next book section => added green bg gradient
 .section-book {
   padding: 15rem 0;
   background-image: linear-gradient(
@@ -48,7 +49,10 @@
     $color-primary-dark
   );
 }
-
+//added a image full => here we are using a gradient advanced => if you see booking it has left and right partition and this partition line of 105 deg we
+//can create using gradient only => we have set the gradient to move in 105 direction, then we can also give percentages progress => at 0 we start with
+//white, at 50 we have white again and this with 105 will create that partition + we have said that transparency for this is 50% and since image
+//is below this, it will show image as well and for rest of the part, there is no gradient and thus image in all glory will be shown.
 .book {
   background-image: linear-gradient(
       105deg,
@@ -63,6 +67,7 @@
 
   height: 50rem;
 
+  //we are adding a form using html form element on the left side => basic width out of parent and padding is added
   &__form {
     width: 50%;
     padding: 6rem;

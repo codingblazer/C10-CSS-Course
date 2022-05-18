@@ -1,16 +1,21 @@
+//final part here is to add the video bg =>  see the html => <div class="bg-video"> => we created a container same size as story section where video will
+//reside => in html we have added 2 source elements to support all browsers => also we can use free website coverr for getting videos => we get 2 formats
+//mp4 webm both to support browsers =>Also if any of these not able to fit => it will show text that not supported from html =>  we have added attributes
+// loop autoplay and mute => now added following prop self exaplnatory =>
 .bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  overflow: hidden; //any video part overflowing the parent should be hidden
+  //this class is basically the video itself which reside inside the container we added => we give it to fit parent => object fit cover is like cover for image
+  //=> maintains the aspect ration and crop the extra bit
+  &__content {
     height: 100%;
     width: 100%;
-    z-index: -1;
-    opacity: .15;
-    overflow: hidden;
-
-    &__content {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
+    object-fit: cover;
+  }
 }

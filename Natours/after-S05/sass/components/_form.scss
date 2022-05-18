@@ -1,96 +1,109 @@
 .form {
-    &__group:not(:last-child) {
-        margin-bottom: 2rem;
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  //unlike all elements iunput does not inherit font family, color so we gave it to inherit
+  &__input {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: rbga($color-white, 0.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 90%;
+    display: block;
+    transition: all 0.3s;
+
+    //when the input is focused, it shows very bad outline and we remove it => we add a box shadow and bottom border in that case
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+      border-bottom: 3px solid $color-primary;
     }
 
-    &__input {
-        font-size: 1.5rem;
-        font-family: inherit;
-        color: inherit;
-        padding: 1.5rem 2rem;
-        border-radius: 2px;
-        background-color: rbga($color-white, .5);
-        border: none;
-        border-bottom: 3px solid transparent;
-        width: 90%;
-        display: block;
-        transition: all .3s;
-
-        &:focus {
-            outline: none;
-            box-shadow: 0 1rem 2rem rgba($color-black, .1);
-            border-bottom: 3px solid $color-primary;
-        }
-
-        &:focus:invalid {
-            border-bottom: 3px solid $color-secondary-dark;
-        }
-
-        &::-webkit-input-placeholder {
-            color: $color-grey-dark-2;
-        }
+    //so chrome provides a nice validations for things like email phone and if not valid, then :invalid class is applied by vchrome => we can use it by changing
+    //it => in that case border of focus can be red
+    &:focus:invalid {
+      border-bottom: 3px solid $color-secondary-dark;
     }
 
-
-    &__label {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-left: 2rem;
-        margin-top: .7rem;
-        display: block;
-        transition: all .3s;
+    //input also has placeholder class which we can modify according to us => color we are changing
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
     }
+  }
 
-    &__input:placeholder-shown + &__label {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-4rem);
+  //label below the input
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    display: block; //otherwise we can tuse margin etc above
+    transition: all 0.3s;
+  }
+
+  //now input provides a placeholder-shown class when it is shown, and it is shown when there is no text => in that case we want the label to be hidden
+  //as placeholder itself says what this input is for and thus lable not needed in that case => but how do we select label when placeholder is shown bcoz
+  //we cant use &__input:placeholder-shown &__label { because label is not child of input => since it is sibbling, we can use + to select a immediate next
+  //sibbling => in that case we will hide the label and animate this thing by translating the input from its initial position
+
+  //this selector we just used is called immediate/adjacent sibblign selector (sibbling meaning both element are at same level) => but let say if there were
+  //more sibblings in between input and label like div etc => then we could have used ~ instead of + => In case of ~, sibbling does not have to be immeduateky
+  //after the input => so ideally we could have used ~ above as well => Note that, if label was above the input, i.e. immeditaely before the input, this
+  //subbling selector not works in that case
+  &__input:placeholder-shown + &__label {
+    opacity: 0; //we have included this just for animation purpose otherwise hidden visibility was enough
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+
+  &__radio-group {
+    width: 49%;
+    display: inline-block;
+  }
+
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4.5rem;
+  }
+
+  &__radio-button {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -0.4rem;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $color-primary;
+      opacity: 0;
+      transition: opacity 0.2s;
     }
+  }
 
-
-    &__radio-group {
-        width: 49%;
-        display: inline-block;
-    }
-
-    &__radio-input {
-        display: none;
-    }
-    
-    &__radio-label {
-        font-size: $default-font-size;
-        cursor: pointer;
-        position: relative;
-        padding-left: 4.5rem;
-    }
-
-    &__radio-button {
-        height: 3rem;
-        width: 3rem;
-        border: 5px solid $color-primary;
-        border-radius: 50%;
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        top: -.4rem;
-
-        &::after {
-            content: "";
-            display: block;
-            height: 1.3rem;
-            width: 1.3rem;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: $color-primary;
-            opacity: 0;
-            transition: opacity .2s;
-        }
-    }
-
-    &__radio-input:checked ~ &__radio-label &__radio-button::after {
-        opacity: 1;
-    }
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1;
+  }
 }

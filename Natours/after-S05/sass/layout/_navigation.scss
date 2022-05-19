@@ -47,6 +47,7 @@
   //so this will be actual nav which opens and initially not visible, since when it is opened, we want to show cross button and not the bg circle below cross
   //=> we will place this nav between the cross/button and circl => z index is 1500 => position is fixed since scroll should not work => width shuold be 100%
   //but why 0 we will discuss later
+  //so this width is 0 bcoz, though opaciuty 0, links will still be there and clickable => width 0 will not have links then
   &__nav {
     height: 100vh;
     position: fixed;
@@ -56,6 +57,8 @@
 
     opacity: 0;
     width: 0;
+    //we are here using a custom transition instead of standadrs like ease out => this function is used for that and values you can see from easings.net
+    //which have diff implementations you can use like blow + cubic-bezier.com
     transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
@@ -116,11 +119,18 @@
     }
   }
 
+  //Now on the top you will see a checkbox => this is like what we did for the radiobutton => when the nav button is clicked => we have a hidden checkbox,
+  //will become checked and based on its state we will start showing nav => note that this can be done in easy manner in JS but we want to do it all by
+  //only CSS => so below we are saying that when the checkbox is checked => means nav bar open is clicked => we want to select next sibblng of checkbox which
+  //is background circle we created and scale to 80 and when we do this, this circle will be so big that it will cover whole viewport with circle which is
+  //what we want
+
   //FUNCTIONALITY
   &__checkbox:checked ~ &__background {
     transform: scale(80);
   }
 
+  //when checkbox is checked, the nav should be shown => opacity is set and width back to 100
   &__checkbox:checked ~ &__nav {
     opacity: 1;
     width: 100%;

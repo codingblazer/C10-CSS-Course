@@ -135,12 +135,14 @@
     opacity: 1;
     width: 100%;
   }
-
+  //Now we will build icon with 3 lines ourself => we will create a span icon inside button text and it will have before and after pseudo element on top and down
+  //giving 3 lines =>
   //ICON
   &__icon {
     position: relative;
     margin-top: 3.5rem;
 
+    //all 3 lines share common prop of same width and height, color of span bg which will give it line like look, and inline block
     &,
     &::before,
     &::after {
@@ -150,6 +152,7 @@
       display: inline-block;
     }
 
+    //now since content is must for pseudo, we give it here, also we will position these lines using absolute => same left and
     &::before,
     &::after {
       content: "";
@@ -158,6 +161,7 @@
       transition: all 0.2s;
     }
 
+    //top we have defined separately so 3 aligned veertically
     &::before {
       top: -0.8rem;
     }
@@ -166,18 +170,22 @@
     }
   }
 
+  //since icon is child of button => button when hovered, take child icon's before pseudo element and move it little up
   &__button:hover &__icon::before {
     top: -1rem;
   }
 
+  //and move after line little down to give nice animtation for this => transition is added above
   &__button:hover &__icon::after {
     top: 1rem;
   }
 
+  //now when checkbox become checked, we will take its immediagte sibbling button and its child icon and hide that main line
   &__checkbox:checked + &__button &__icon {
     background-color: transparent;
   }
 
+  //and before and after line we will rotate so that it becomes a cross
   &__checkbox:checked + &__button &__icon::before {
     top: 0;
     transform: rotate(135deg);

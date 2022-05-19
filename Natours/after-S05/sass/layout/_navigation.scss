@@ -1,147 +1,180 @@
+//next we need to create the navigation => footer is easy and thus no comments => but both navigation and footer will be there actoss pages and thus added
+//in layout folder => so in nav, we have a icon which as you scroll page will be fixed and on clicking it, nav opens with list items and nav is taking full
+//viewport to show these list items => html for this written
+
+//see the background below which is icon kind of thing that will open or close nav => it is cirlce and thus heigh width radious => position is fixed => fixed
+//is same as absolute but is also fixed as we scroll the page which is what we want => see to color this circle we have used radial gradient for first time
+//see z index is 1000 so this always is visible when you scroll and is on top of everything we have =>
+
+//now on top of this circle, we will have a button/icon with three lines or cross depeending on the state => we will do that later but just have a button
+//for now => button will be same as its circle we created but since on top of it => z index 2000 and when hover, cursor pointer =>
 .navigation {
-    &__checkbox {
-        display: none;
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-white;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient(
+      $color-primary-light,
+      $color-primary-dark
+    );
+    z-index: 1000;
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    //transform: scale(80);
+  }
+
+  //so this will be actual nav which opens and initially not visible, since when it is opened, we want to show cross button and not the bg circle below cross
+  //=> we will place this nav between the cross/button and circl => z index is 1500 => position is fixed since scroll should not work => width shuold be 100%
+  //but why 0 we will discuss later
+  &__nav {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+    opacity: 0;
+    width: 0;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  //list items component => bring it to center of the nav
+  &__list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  //spacing bw each item in list
+  &__item {
+    margin: 1rem;
+  }
+
+  //link is like item in the list onyl => when we hover over it, when color flows from right to left => visited and link is normal state and span inside it
+  //is used for numbering and we created span so margin can be added bw number and text => for link  => since we will add some padding, making it inline block
+  //knwo for the animation on hover => it is slanted and hence 120 deg gradient => at 0% it is transparent till 50% i.e. first half and rest of 50 second half
+  //is white => usually bg size is 100% but if we increase it, bg will become bigger and just the transparent part will start covering the whole box/link
+  //and white part will be on right of box but not visible to us since it is onky for box => initially its transparent
+  //see hover state below and we are changing the bg position to 100% meaning bg position will move 100% towards left and hence white part will now come on
+  //top of link and this we are doing through transition => also we want button to shift a button to right just for better effect and hence on hover transform
+  //is also there
+  &__link {
+    &:link,
+    &:visited {
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 300;
+      padding: 1rem 2rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      background-image: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 50%,
+        $color-white 50%
+      );
+      background-size: 220%;
+      transition: all 0.4s;
+
+      span {
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
     }
 
-    &__button {
-        background-color: $color-white;
-        height: 7rem;
-        width: 7rem;
-        position: fixed;
-        top: 6rem;
-        right: 6rem;
-        border-radius: 50%;
-        z-index: 2000;
-        box-shadow: 0 1rem 3rem rgba($color-black, .1);
-        text-align: center;
-        cursor: pointer;
+    &:hover,
+    &:active {
+      background-position: 100%;
+      color: $color-primary;
+      transform: translateX(1rem);
+    }
+  }
+
+  //FUNCTIONALITY
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
+  }
+
+  //ICON
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
     }
 
-    &__background {
-        height: 6rem;
-        width: 6rem;
-        border-radius: 50%;
-        position: fixed;
-        top: 6.5rem;
-        right: 6.5rem;
-        background-image: radial-gradient($color-primary-light, $color-primary-dark);
-        z-index: 1000;
-        transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
-
-        //transform: scale(80);
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
     }
 
-    &__nav {
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1500;
-
-        opacity: 0;
-        width: 0;
-        transition: all .8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    &::before {
+      top: -0.8rem;
     }
-
-    &__list {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        list-style: none;
-        text-align: center;
-        width: 100%;
+    &::after {
+      top: 0.8rem;
     }
+  }
 
-    &__item {
-        margin: 1rem;
-    }
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
 
-    &__link {
-        &:link,
-        &:visited {
-            display: inline-block;
-            font-size: 3rem;
-            font-weight: 300;
-            padding: 1rem 2rem;
-            color: $color-white;
-            text-decoration: none;
-            text-transform: uppercase;
-            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
-            background-size: 220%;
-            transition: all .4s;
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
 
-            span {
-                margin-right: 1.5rem;
-                display: inline-block;
-            }
-        }
-        
-        &:hover,
-        &:active {
-            background-position: 100%;
-            color: $color-primary;
-            transform: translateX(1rem);
-        }
-    }
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+  }
 
+  &__checkbox:checked + &__button &__icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
 
-    //FUNCTIONALITY
-    &__checkbox:checked ~ &__background {
-        transform: scale(80);
-    }
-
-    &__checkbox:checked ~ &__nav {
-        opacity: 1;
-        width: 100%;
-    }
-
-
-    //ICON
-    &__icon {
-        position: relative;
-        margin-top: 3.5rem;
-
-        &,
-        &::before,
-        &::after {
-            width: 3rem;
-            height: 2px;
-            background-color: $color-grey-dark-3;
-            display: inline-block;
-        }
-
-        &::before,
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            transition: all .2s;
-        }
-
-        &::before { top: -.8rem; }
-        &::after { top: .8rem; }
-    }
-
-    &__button:hover &__icon::before {
-        top: -1rem;
-    }
-
-    &__button:hover &__icon::after {
-        top: 1rem;
-    }
-
-    &__checkbox:checked + &__button &__icon {
-        background-color: transparent;
-    }
-
-    &__checkbox:checked + &__button &__icon::before {
-        top: 0;
-        transform: rotate(135deg);
-    }
-
-    &__checkbox:checked + &__button &__icon::after {
-        top: 0;
-        transform: rotate(-135deg);
-    }
+  &__checkbox:checked + &__button &__icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
 }

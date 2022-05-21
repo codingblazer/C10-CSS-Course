@@ -36,6 +36,12 @@ html {
   //Now one thing to notice importantly is the order of media queries => it should always be from bigger screen sizes defined first and then smaller ones
   //=> if you see => in case width is < 900 => both media queries will apply but since tab-port is later on in the order, it will be used finally
   //and that is whar we wanted since it is <900 one
+
+  //So to test the media queries behave => we can reduce the browser screen or we can better use the chrome inspect => then left top there are 2 device icon
+  //=> once opened, on right top there is menu and we can chose to show the media queries as well => blue ones are max width media queries and orange one
+  //are min width => on top middle we can also select the various devices =>
+  //now although the media queries are done but not everything will be perfect and we will make the small changes wherever required => we should do changes
+  //in this order => ORDER: Base + typography > general layout + grid > page layout > components => see latest final S06 base.scss now
 }
 
 body {

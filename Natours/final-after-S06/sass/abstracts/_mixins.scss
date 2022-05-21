@@ -1,18 +1,58 @@
 @mixin clearfix {
-    &::after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 @mixin absCenter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+//See the notes in CSS notes part3 to understand responsice design and desktop first mobile first approach => Now we use media queries and there are diff
+//ways to organise => one can be that we first write mobile/desktop first code and then in separate file or separate section write media query based.
+//2nd way and more efficient would be to write the media queries in same code we wrote for mobile/desktop first i.e. since selectors will be same =>
+//just add for particular selector, what it should do in media queries case => we will use this one
+
+//Now when we write media queries since there are 4 breakpoints we have to write that again and again like below
+html {
+  font-size: 62.5%;
+
+  @media (max-width: 600px) {
+    font-size: 50%;
+  }
+  @media (max-width: 900px) {
+    font-size: 55%;
+  }
+}
+//=> to simplify a bit, we can use mixins for this => the mixin can be something like below:
+@mixin respond-phone {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+//and it will be used as  =>
+@include respond-phone {
+  font-size: 50%;
+}
+//and on compilation, wherever mixin was used, it will compile to =>
+@media (max-width: 600px) {
+  font-size: 50%;
+}
+
+//we can do slight modification in above way and take in the parameter breakpoint from the base.scss file where it is used and thus also use if condition
+//to group single style but multiple media queries into one =>
+
+//Now we cant use pixels for max-width like above i.e. 600px because if user changes the font size of browser, these media queries being in px will
+//remain same against the user expectation which is why we used to use rem as well. But we cant use rem also here becauase in media queries some of
+//the brosers dont work well with use of rem inside media queries => we will use em => also in case of media queries unlike in em which is relative to
+//parent, this is relative to browser font size which is 16px by default unless user changes it => we will do conversion of all px values by 16px
+
+//Now we are going to base.scss starter file instead of this final of s06 as much easier to explain there => go there
 
 // MEDIA QUERY MANAGER
 /*
@@ -33,17 +73,24 @@ ORDER: Base + typography > general layout + grid > page layout > components
 1em = 16px
 */
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media only screen and (max-width: 37.5em) { @content };    //600px
-    }
-    @if $breakpoint == tab-port {
-        @media only screen and (max-width: 56.25em) { @content };     //900px
-    }
-    @if $breakpoint == tab-land {
-        @media only screen and (max-width: 75em) { @content };    //1200px
-    }
-    @if $breakpoint == big-desktop {
-        @media only screen and (min-width: 112.5em) { @content };    //1800
-    }
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
 }
-

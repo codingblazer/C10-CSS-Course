@@ -1,16 +1,34 @@
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
+//So this is how we use include to use the mixin, pass it the type of screen out of options and based on that defining the font size or other prop
+//=>
 html {
-    // This defines what 1rem is
-    font-size: 62.5%;
+  // This defines what 1rem is
+  font-size: 62.5%;
+
+  @include respond(phone) {
+    font-size: 50%;
+  }
+
+  @include respond(tab-port) {
+    font-size: 60%;
+  }
+
+  @include respond(tab-land) {
+    font-size: 70%;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 80%;
+  }
 }
 
 body {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }

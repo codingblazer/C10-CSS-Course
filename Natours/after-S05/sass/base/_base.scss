@@ -7,26 +7,35 @@
 }
 
 //So this is how we use include to use the mixin, pass it the type of screen out of options and based on that defining the font size or other prop
-//=>
+//=> Now think back, how we defined the 1 rem value => we said that rem is wrt font size of root which is 16px => in the layout i.e. html, as we can see
+//below we defined font size as 62.5% which is 62.5% of 16 = 10px => thus we were able to use rem everywhere in html layout by 1 rem = 10px =>
+
+//Now everywhere we have used rem, we dont want to define media queries in any of the other file but just here and we will be done => how ?
+//below what we have is layout's root font size and everything is based on this => if we change this root font size i.e. it is diff for diff media queries,
+//everything in other files will be diff for diff media queries => we are saying =>
 html {
-  // This defines what 1rem is
+  // This defines what 1rem is in normal case if no media query apply
   font-size: 62.5%;
 
-  @include respond(phone) {
+  //now this defines what 1 rem is when screen size is <1200px => let say we checked manually and decided some value of rem in these media queries if done
+  //as 1 rem = 9px will do what we need => we defined => font size below as 9px/16px (default root font size) = 56.25% => if width is less than 1200, then
+  //font-size of root is not 62.5 but 56.25% and everything will scale
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+
+  //similarly for width < 900px, let say we found that if 1rem=8px, everything looks good for these screen size => 50% value
+  @include respond(tab-port) {
     font-size: 50%;
   }
 
-  @include respond(tab-port) {
-    font-size: 60%;
-  }
+  //now if you see => cases where screen is more than 1200 i.e. big desktop wont be coverred by any media query and thus default one i.e. 1 rem = 10px will
+  //apply and that also looks good because at <1200 1 rem =9px and >1200, 1 rem=10px is good logically as well. Also for phones which are <600px width, tab-port
+  //will apply automatically and 1 rem = 8px will be used
 
-  @include respond(tab-land) {
-    font-size: 70%;
-  }
-
-  @include respond(big-desktop) {
-    font-size: 80%;
-  }
+  //Now one thing to notice importantly is the order of media queries => it should always be from bigger screen sizes defined first and then smaller ones
+  //=> if you see => in case width is < 900 => both media queries will apply but since tab-port is later on in the order, it will be used finally
+  //and that is whar we wanted since it is <900 one
 }
 
 body {

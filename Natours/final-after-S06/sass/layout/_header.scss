@@ -12,6 +12,9 @@
   background-position: top;
   position: relative;
 
+  //here also in firefox the clip path does not work and hence we ahvea added feature support query below to check and only then clip will happen and height
+  //needed for clip is set => changing design to look good without clip as well
+  //similarly we have added more support queries wherever needded
   @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
@@ -20,6 +23,8 @@
 
   //so like bwlo wee can give the media queries for min resolution => also @media a and b, c => this means a and b OR c
   // we have converted all media queries to em => px/16px
+  //if you test the header on old version of firefox or on safari, it wont have colors as expected and this is because min-resolution: 192dpi below dont work
+  //in them => we can use different prop called -webkit-min-device-pixel-ratio: 2 in its place to do it => again this is support thing only
 
   @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
     only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),

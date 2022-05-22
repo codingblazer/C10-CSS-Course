@@ -34,7 +34,8 @@ body {
     padding: 0;
   }
 }
-
+//now read the css part 4 from mac notes
+//Now we will do some petty wrap up => below we are telling that on text selection, change the bg color of selection
 ::selection {
   background-color: $color-primary;
   color: $color-white;

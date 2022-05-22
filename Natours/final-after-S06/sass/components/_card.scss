@@ -188,6 +188,10 @@
   }
 
   //@include respond(tab-port) {
+  //so earlier it was tab port respond but there is one issue with cards => with tab port sizes, there are some devices of this width which
+  //has touch screen and thus hover is not possible and there are some devices which dont have touch and hover is possible => we made card to
+  //turn on hover and hover might not be possible in some cases and thus user cant see the backside of card on some devices => we have a way to know
+  //if hover is possible on device or not like below => hover none meaning that hover is not possible i.e. touch screen
   @media only screen and (max-width: 56.25em), only screen and (hover: none) {
     height: auto;
     border-radius: 3px;

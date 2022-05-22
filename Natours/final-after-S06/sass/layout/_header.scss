@@ -1,3 +1,5 @@
+//Now we will see how to create responsive images in CSS using media queries => we wrote media queries so far based on screen width but now we will write
+//them based on screen resolution =>
 .header {
   height: 85vh;
   background-image: linear-gradient(
@@ -15,6 +17,9 @@
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     height: 95vh;
   }
+
+  //so like bwlo wee can give the media queries for min resolution => also @media a and b, c => this means a and b OR c
+  // we have converted all media queries to em => px/16px
 
   @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
     only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),

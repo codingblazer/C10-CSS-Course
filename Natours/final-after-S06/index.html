@@ -76,6 +76,15 @@
                     </div>
                     <div class="col-1-of-2">
                         <div class="composition">
+                            //now we will look resolution switching in html => like in density switching, here instead we will give width of the image
+                            //=> see the imag/nat-1 and it will show it has 300px width => we will below in srcset write 300w and for nat-1 large it is
+                            //100px or 1000w => the second attribute we have to give is sizes => here we guide the browser on what is the ideal width of
+                            //image in particular viewport size => some data to train => so browser can automatically decide based on this info and the
+                            //what is width descriptor we gave in srcset for images => best image to use for given viewport size and resolution
+
+                        //sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px" => max-width: 900px and by inspecting we can see that in this
+                        //case in browser, image if approx 20% of vw i.e. 20vw looks good, for max-width:600px 30vw looks good and 300px in all other cases
+                        //as default 
                             <img srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
                                  sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
                                  alt="Photo 1"

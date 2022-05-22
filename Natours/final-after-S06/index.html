@@ -76,7 +76,6 @@
                     </div>
                     <div class="col-1-of-2">
                         <div class="composition">
-
                             <img srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
                                  sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
                                  alt="Photo 1"
@@ -367,6 +366,16 @@
         <footer class="footer">
             <div class="footer__logo-box">
 
+                //Read CSS notes part 4 for responsive images => Now we will see how to use art direction and density switching => we can do that in html
+                //or CSS => we will do in HTML first => we have to use the picture tag => source is like conditional source => we can give a media query
+                //argument telling that if max width is 37.5 then use given src => if not, move to next image inside picture tag => this is based on screen
+                //size 2 diff images => this is art direction => 
+                //Now if you see img 2nd one below => we have used srcset which we can use with img anywhere => there we have definde 2 images telling, there
+                //is a set of images and <imagepath> <image resolution> => we will give same but multiple resolution images and browser will automatically
+                    //decide from the set, which one best suits the device
+                    //to check if its working, we can go to device chrome dev tool thing => select the diff DPR value on top => inspect the image => 
+                    //but it might not show it correctly => go to properties omn the right and select img for it and it will show in src which image it 
+                    //has used finally 
                 <picture class="footer__logo">
                     <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x"
                             media="(max-width: 37.5em)">

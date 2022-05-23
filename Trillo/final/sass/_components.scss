@@ -9,8 +9,11 @@
 ////////////////////////////////////////
 // SEARCH
 .search {
+  //thsi is actual search inside the parent container => shrink is not allowed and so is the grow => fixed width of 40% of container is to be used =>
+  //if container is reduced, so will this search in that case
   flex: 0 0 40%;
 
+  //so that items inside search i.e. button and input becmes centered vertically and horizontally
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,16 +32,19 @@
     border: none;
     padding: 0.7rem 2rem;
     border-radius: 100px;
+    //initially 90% of searchbox
     width: 90%;
     transition: all 0.2s;
-    margin-right: -3.25rem;
+    margin-right: -3.25rem; //button will move on top of input
 
     &:focus {
+      //border on clicking and magnify the width on focus
       outline: none;
       width: 100%;
       background-color: var(--color-grey-light-3);
     }
 
+    //when placeholder is shown, text color should be light
     &::-webkit-input-placeholder {
       font-weight: 100;
       color: var(--color-grey-light-4);
@@ -58,6 +64,7 @@
     }
 
     &:active {
+      //since on active => width of input will increase this search icon button should also move
       transform: translateY(2px);
     }
   }

@@ -17,6 +17,8 @@
   //will be blurred => we can say that above what we wrote was general and if the browser supports this prop like written below, we will add these
   //prop and also make black bg that was there light so blurr can actually show => below condition will pass in case of safari and run only in that case
   //this support thing is called feature query
+
+  //to know what all browsers support a certain prop we can use => caniuse.com =>
   @supports (-webkit-backdrop-filter: blur(10px)) or
     (backdrop-filter: blur(10px)) {
     -webkit-backdrop-filter: blur(10px);

@@ -78,22 +78,27 @@
   }
 }
 
-////////////////////////////////////////
+//////////////////////////////////////// now we will do the rightmost navigation part of the header => first add flex to make them horizontal
 // USER NAVIGATION
 .user-nav {
+  //the other items in header are taking full row height => make stretch so this right part also takes all space vertically
   align-self: stretch;
 
   display: flex;
+  //make the items vertically center
   align-items: center;
 
+  //all direct childs of this right part should have this => for each child, their child also should be vertically centered hnce added flex and align centr
   & > * {
     padding: 0 2rem;
     cursor: pointer;
     height: 100%;
+    //so for icon box, notif and user photo => all we want to vertically center their inside items which is one item obnly => make these parents flex and centers
     display: flex;
     align-items: center;
   }
 
+  //all direct childs on hover should show selection bg color
   & > *:hover {
     background-color: var(--color-grey-light-2);
   }
@@ -108,6 +113,7 @@
     fill: var(--color-grey-dark-2);
   }
 
+  //this is the circle of number of notifications that are there for things => using absolute positioning we are fixing ir
   &__notification {
     font-size: 0.8rem;
     height: 1.75rem;
@@ -119,6 +125,7 @@
     top: 1.5rem;
     right: 1.1rem;
 
+    //the flex does not just work on items but also on text => this is div of text and centered using flex
     display: flex;
     justify-content: center;
     align-items: center;

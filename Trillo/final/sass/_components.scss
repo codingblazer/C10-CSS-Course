@@ -138,6 +138,10 @@
   }
 }
 
+//Now we will create side navigation which is simplem list in HTML and links => https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html
+//read this for how to put your html in semantic meaninful way => so for icons we have used svg for each link item => Also note that after this sidebar height
+//became full and thus flex has default value of streetch and thats why main right side part also stretched to full height
+//
 ////////////////////////////////////////
 // SIDE NAVIGATION
 .side-nav {
@@ -166,14 +170,18 @@
     }
   }
 
+  //we have create a pseduo element which will show when hover happens =>
   &__item::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
+    //taking height of parent which is item itself
     height: 100%;
     width: 3px;
     background-color: var(--color-primary);
+    //this before element is 0 initially and hidden and then on hover of item or active, it becomes 1 and show up. Also for the width thing animation
+    //we below said start that animation at .2 sec when scaleY transform has ended and end at .4 sec.
     transform: scaleY(0);
     transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
       background-color 0.1s;
@@ -197,8 +205,11 @@
     display: block;
     padding: 1.5rem 3rem;
     position: relative;
+    //we want link and its text on top of pseudo element
     z-index: 10;
 
+    //very common case is to align text and icon vertically => since icon and text are inside link, we made this parent flex and by align items center, the
+    //childs are vertically aligned
     display: flex;
     align-items: center;
 
@@ -217,6 +228,7 @@
     width: 1.75rem;
     height: 1.75rem;
     margin-right: 2rem;
+    //currentColor is supported by many browsers and give the current color of the element or its parent and so on
     fill: currentColor;
 
     @media only screen and (max-width: $bp-small) {
@@ -244,6 +256,7 @@
 ////////////////////////////////////////
 // GALLERY
 .gallery {
+  //flex to place them next to one another
   display: flex;
 
   &__photo {
@@ -273,7 +286,20 @@
   }
 
   &__stars {
+    //item 1 and item 2 i.e. star are together on left and item 3,4 are on right =>
+    //cant use flex with justify as space in between as all eq space => one way is to
+    //ask second item stars to flex:1 so it grows and all space it takes on right till item3 comes
+    //and item 3,4 takes their natural width => but issue with this is => if item 2 has
+    //hover, whole space it created by growing with also hover
+
+    //Theere is better way and nice trick => we can use margin auto right on item 2
+    //which is like flex 1 grow only but it will actually grow in terms of margin
+    //and not item's width => and this works in case of flex container only
     margin-right: auto;
+    //so there is little white space below stars => it is because stars container have some line
+    //height => we can actually make container flex and it will go away because it will then
+    //decide height fo container based on childs. Also we could
+    //reduce the line height of stars
     display: flex;
   }
 

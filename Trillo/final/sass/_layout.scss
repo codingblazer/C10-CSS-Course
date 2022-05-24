@@ -51,6 +51,8 @@
   //allowed and it is now allowed to grow from defined flex basis width of 18% of parent
   flex: 0 0 18%;
 
+  //so now inside sidebar we have 2 childs one nav link and other copyright thing and we want nav on top and then space in between and then the copyright
+  //at bottom => best way to do this by using the flex direction as column and then justify content to space between => very useful thing
   display: flex;
   flex-direction: column;
   justify-content: space-between;

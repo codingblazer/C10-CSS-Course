@@ -65,6 +65,9 @@
   flex: 1;
 }
 
+//detail has 2 childs as description and review =. left and right
+//initially we gave some height to it but later we remove it after filling content
+//because hright of this will depende on content
 .detail {
   font-size: 1.4rem;
   display: flex;
@@ -81,6 +84,7 @@
   }
 }
 
+//description takes 60% width and user review takes rest of it by growing
 .description {
   background-color: #fff;
   box-shadow: var(--shadow-light);

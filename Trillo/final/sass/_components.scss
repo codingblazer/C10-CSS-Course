@@ -422,6 +422,8 @@
   border-bottom: var(--line);
 
   display: flex;
+  //below we have made each item to be 50% and also flex wrap so when 3rd item
+  //overflows, it goes to next row >
   flex-wrap: wrap;
 
   &__item {
@@ -429,6 +431,7 @@
     margin-bottom: 0.7rem;
   }
 
+  //addiung arrow before each list item
   &__item::before {
     content: "";
     display: inline-block;
@@ -436,11 +439,17 @@
     width: 1rem;
     margin-right: 0.7rem;
 
+    //Now we can use svg from spirit file but that can be done in html only and
+    //we have to write the use tag 8 times => instead we will directly use svg file l
+    //like below instead of from spirit file => but there is a problem => we want
+    //icon in pink color and by using bg image, we cant do fill thing like earlier
     // Older browsers
     background-image: url(../img/chevron-thin-right.svg);
     background-size: cover;
 
+    //=> for above problem we can use mask for new browsers =>
     //Newer browsers - masks
+    //mask is like intersection of background and image and then show that color
     @supports (-webkit-mask-image: url()) or (mask-image: url()) {
       background-color: var(--color-primary);
       -webkit-mask-image: url(../img/chevron-thin-right.svg);

@@ -492,13 +492,16 @@
 }
 
 ////////////////////////////////////////
+//review on the right side
 // REVIEWS
 .review {
   background-color: #fff;
   box-shadow: var(--shadow-light);
   padding: 3rem;
   margin-bottom: 3.5rem;
+  //z index only work when some position is defined
   position: relative;
+  //because quote was overflowing
   overflow: hidden;
 
   @media only screen and (max-width: $bp-medium) {
@@ -525,6 +528,7 @@
   }
 
   &__user-box {
+    //so that rating child 3 of flex moves to right
     margin-right: auto;
   }
 
@@ -546,12 +550,17 @@
     font-weight: 300;
   }
 
+  //this is for the quote image type thing
   &::before {
+    //using html entity for quotation mark
     content: "\201C";
+    //put in corner using absolute poition and add relative
     position: absolute;
     top: -2.75rem;
     left: -1rem;
+    //becaue it was very big
     line-height: 1;
+    //increase font side for bigger
     font-size: 20rem;
     color: var(--color-grey-light-2);
     font-family: sans-serif;

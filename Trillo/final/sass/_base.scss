@@ -22,6 +22,12 @@
   --line: 1px solid var(--color-grey-light-2);
 }
 
+//we cant have css variables for media queries paramter and thus variables are
+//declared in sass
+
+//also we are not making media manager we did earlier as small project
+//so we can see on caniuse.com that flexbox thing is supported in almost all latest browser
+//but some old internet explorer not support it and they are very less users
 $bp-largest: 75em; // 1200px
 $bp-large: 68.75em; // 1100px
 $bp-medium: 56.25em; // 900px

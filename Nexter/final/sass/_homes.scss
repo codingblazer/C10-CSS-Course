@@ -1,80 +1,92 @@
 .homes {
-    grid-column: center-start / center-end;
-    margin: 15rem 0;
+  //these are basically 6 cards => grid
+  grid-column: center-start / center-end;
+  margin: 15rem 0;
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    grid-gap: 7rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 7rem;
 }
 
 .home {
-    background-color: $color-grey-light-1;
+  background-color: $color-grey-light-1;
 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 3.5rem;
+  display: grid;
+  //from the card we can see that USA etc thing
+  //is actually 2 cols => other rows we can just
+  //span these 2 cols and it should work
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 3.5rem;
 
-    &__img {
-        width: 100%;
-        grid-row: 1 / 2;
-        grid-column: 1 / -1;
-        z-index: 1;
+  &__img {
+    //taking width of the card i.e. col
+    width: 100%;
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    z-index: 1;
+  }
+
+  &__like {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    fill: $color-primary;
+    height: 2.5rem;
+    width: 2.5rem;
+    z-index: 2;
+    justify-self: end;
+    margin: 1rem;
+  }
+
+  &__name {
+    //we are placing this in the row of the pic
+    //in the card
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    //then align button at center horizopntally
+    justify-self: center;
+    //vertically at end
+    align-self: end;
+    //should show on top of image
+    z-index: 3;
+    //and move by 50% of its own height to y direction
+    //so it is half in this row and half in next
+    transform: translateY(50%);
+
+    //because the button is 80%
+    width: 80%;
+    font-family: $font-display;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 1.25rem;
+    background-color: $color-secondary;
+    color: #fff;
+    font-weight: 400;
+  }
+
+  &__location,
+  &__rooms {
+    margin-top: 2.5rem;
+  }
+
+  &__location,
+  &__rooms,
+  &__area,
+  &__price {
+    font-size: 1.5rem;
+    margin-left: 2rem;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      fill: $color-primary;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem;
     }
+  }
 
-    &__like {
-        grid-row: 1 / 2;
-        grid-column: 2 / 3;
-        fill: $color-primary;
-        height: 2.5rem;
-        width: 2.5rem;
-        z-index: 2;
-        justify-self: end;
-        margin: 1rem;
-    }
-
-    &__name {
-        grid-row: 1 / 2;
-        grid-column: 1 / -1;
-        justify-self: center;
-        align-self: end;
-        z-index: 3;
-
-        width: 80%;
-        font-family: $font-display;
-        font-size: 1.6rem;
-        text-align: center;
-        padding: 1.25rem;
-        background-color: $color-secondary;
-        color: #fff;
-        font-weight: 400;
-        transform: translateY(50%);
-    }
-
-    &__location,
-    &__rooms {
-        margin-top: 2.5rem;
-    }
-
-    &__location,
-    &__rooms,
-    &__area,
-    &__price {
-
-        font-size: 1.5rem;
-        margin-left: 2rem;
-
-        display: flex;
-        align-items: center;
-
-        svg {
-            fill: $color-primary;
-            height: 2rem;
-            width: 2rem;
-            margin-right: 1rem;
-        }
-    }
-
-    &__btn {
-        grid-column: 1 / -1;
-    }
+  &__btn {
+    grid-column: 1 / -1;
+  }
 }

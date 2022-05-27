@@ -6,14 +6,21 @@
   margin: 15rem 0;
 
   @supports (display: grid) {
+    //we want this feature section also have a subgrid and this is now acting as
+    //preant grid cntainer
     display: grid;
     //grid-template-columns: repeat(3, 1fr);
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    //we can give row definition also as auto auto for 2 rows but no need as above
+    //will create autofit and thus will create implciit rows as per req.
+    //now we will just add item content in html i.e. feature with icon and text
+    //this autofit above will ensure responsivemess and thus whever oveflows, it will
+    //go to next row
     grid-gap: 6rem;
     align-items: start;
   }
 }
-
+//this is each feature item =>
 .feature {
   float: left;
   width: 33.3333%;
@@ -24,15 +31,24 @@
     margin-bottom: 0;
   }
 
+  //inside feature we have 3 items which is in 2d since both x and y axis is present
+  //=> we can use grid => for icon we can say col is min content and for text, let it
+  //occupy the all available space
   display: grid;
   grid-template-columns: min-content 1fr;
+  //space between text heading aand text
   grid-row-gap: 1.5rem;
+  //space between icon and text
   grid-column-gap: 2.5rem;
 
+  //this is svg based image and changing color using fill
   &__icon {
     fill: $color-primary;
     width: 4.5rem;
     height: 4.5rem;
+    //since we want text heading and text in same col, we will span icon row by 2 =>
+    //note that we cant use -1 because -1 only works with explicit grid but here we
+    //have implicit grid as well
     grid-row: 1 / span 2;
     transform: translateY(-1rem);
   }

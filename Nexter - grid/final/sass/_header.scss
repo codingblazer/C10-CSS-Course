@@ -13,8 +13,12 @@
   padding-top: 4rem;
 
   display: grid;
+  //so we are giving all the space to logo row and the last company row and then for the rest we are giving specified heights => in old days we would have
+  //put everything inside the container and then centered items and used margins etc
+  //But in grid we can use line heightd =>
   grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
   grid-template-columns: minmax(min-content, max-content);
+  //instead of adding margins we can use gaps => since we cant have diff row gaps, we will do spacing by giving diff row heights above
   grid-row-gap: 1.5rem;
   justify-content: center;
 

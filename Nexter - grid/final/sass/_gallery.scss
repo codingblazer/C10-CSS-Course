@@ -1,4 +1,5 @@
 .gallery {
+  //Now for the gallery we will see smallest pick and choose grid lines according to that so that smallest unit can accomodate
   background-color: $color-grey-light-1;
   //gallery takes full space and hence full start and full end => this is like setting width of gllery section
   grid-column: full-start / full-end;
@@ -86,6 +87,9 @@
   &__img {
     width: 100%;
     height: 100%;
+    //so because of the aspect ration some images were overflowing the cell or not fitting into the cell => Also if we put margin or gaps, it will
+    //start going into that also => these images in some parent div and now applying the object fit on that container img => for this to work both
+    //width and height needs to be set
     object-fit: cover;
     display: block;
   }

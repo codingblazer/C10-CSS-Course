@@ -5,6 +5,8 @@
 
   margin: 15rem 0;
 
+  //this shows how to use browser suppprt for grid system => grid is supported everywhere except on old itnernet explorer and if you have audience like that
+  //better to add supports => but also this is like duplicating the code and if you know prehand that users are on old browser than dont use grid at all
   @supports (display: grid) {
     //we want this feature section also have a subgrid and this is now acting as
     //preant grid cntainer
